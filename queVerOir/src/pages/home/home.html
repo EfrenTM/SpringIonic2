@@ -1,0 +1,128 @@
+<ion-header>
+  <ion-navbar no-border-bottom>
+    <ion-title>
+      Your List
+    </ion-title>
+  </ion-navbar>
+
+  <ion-toolbar no-border-top>
+      <ion-segment [(ngModel)]="option_list_anime">
+        <ion-segment-button value="all_onime" (click)="getAllAnime()">
+          listar
+        </ion-segment-button>
+        <ion-segment-button value="update_one">
+          actu
+        </ion-segment-button>
+        <ion-segment-button value="view_one">
+          Serie
+        </ion-segment-button>
+        <ion-segment-button value="add_one">
+          Añadir
+        </ion-segment-button>
+        <ion-segment-button value="delete_one">
+          Borrar
+        </ion-segment-button>
+      </ion-segment>
+    </ion-toolbar>
+
+</ion-header>
+
+
+
+<ion-content padding> 
+  <div padding>
+      
+      <div [ngSwitch]="option_list_anime">
+          <ion-list *ngSwitchCase="'all_onime'">   
+          
+                  <ion-item *ngFor= "let anime of animes">
+ 
+                    <h2>{{anime.name}} {{anime.gender}} {{anime.status}} {{anime.chapter}}</h2>
+            
+   
+                </ion-item>
+
+              
+          </ion-list>
+
+          <ion-list *ngSwitchCase="'add_one'">
+              
+                  <ion-label >Anime</ion-label>
+                  <ion-input type="text" value="" [(ngModel)] ="newName" name = "newName"></ion-input>
+
+                  <ion-label >Genero</ion-label>
+                  <ion-input type="text" value="" [(ngModel)] ="newGender" name = "newGender"></ion-input>
+
+                  <ion-label >Estado</ion-label>
+                  <ion-input type="text" value="" [(ngModel)] ="newStatus" name = "newStatus"></ion-input>
+
+                  <ion-label >Capitulo</ion-label>
+                  <ion-input type="number" value="" [(ngModel)] ="newChapter" name = "newChapter"></ion-input>
+          <ion-item>
+              <button ion-button color="primary" (click)= "informationForAddOne()" block>Añadir</button>
+          </ion-item>
+         
+         </ion-list>
+
+            <ion-list *ngSwitchCase="'delete_one'">
+              
+                <ion-label >Id de la serie que quieres borrar</ion-label>
+                <ion-input type="text" value=""  [(ngModel)] ="deleteAnime" name = "deleteAnime"></ion-input>
+
+        <ion-item>
+            <button ion-button color="primary" (click)= "infomationDelete()" block>Borrar</button>
+        </ion-item>
+        </ion-list>
+
+        <ion-list *ngSwitchCase="'view_one'">   
+          
+          <ion-label >nombre</ion-label>
+          <ion-input type="text" value=""></ion-input>
+
+          <button ion-button color="primary" block>Mostrar</button>
+
+         
+            
+          <table style="width:100%">
+                <tr>
+                  <th>Anime</th>
+                  <th>Genero</th> 
+                  <th>Estado</th>
+                  <th>Capitulo</th>
+                </tr>
+                <tr>
+                  <td>null</td>
+                  <td>null</td>
+                  <td>null</td>
+                  <td>null</td>
+                </tr>
+              </table>
+        </ion-list>
+
+        <ion-list *ngSwitchCase="'update_one'">   
+          
+          <ion-label >Nombre serie a modificar</ion-label>
+          <ion-input type="text" value=""></ion-input>
+
+          <button ion-button color="primary" block>Mostrar</button>
+          
+          <ion-label >Cambiar nombre</ion-label>
+          <ion-input type="text" value=""></ion-input>
+
+          <ion-label >Cambiar genero</ion-label>
+          <ion-input type="text" value=""></ion-input>
+
+          <ion-label >Cambiar estado</ion-label>
+          <ion-input type="text" value=""></ion-input>
+
+          <ion-label >Cambiar capitulo</ion-label>
+          <ion-input type="text" value=""></ion-input>
+         
+              <button ion-button color="primary"block>Actualizar</button>
+        </ion-list>
+        </div> 
+        
+
+  </div> 
+</ion-content>
+
